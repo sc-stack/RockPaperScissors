@@ -1,0 +1,1 @@
+This is a pretty basic rock paper scissors game played completely from the console. In the future, I will implement buttons and query requests into the code, but for now it is very basic. 

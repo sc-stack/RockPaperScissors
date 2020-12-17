@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+    <style>
+        h1{
+            position: fixed;
+            left: 200px;
+        }
+    </style>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
+    <h1>ROCK PAPER SCISSORS</h1>
     <script>
         //generates an arbitrary number from 1-3 that will help the computer 
         //returns either Rock Paper or Scissors , respectively correlated to the numbers 0, 1, 2
@@ -29,6 +36,8 @@
             let message =  (playerSelection == `rock` && computerSelection == `scissors`)? `You Win! ${playerSelection} beats ${computerSelection}`:
                 (playerSelection == `rock` && computerSelection == `paper`)? `You Lose! ${computerSelection} beats ${playerSelection}`:
                 (playerSelection == `scissors` && computerSelection == `paper`)? `You Win! ${playerSelection} beats ${computerSelection}`:
+                (computerSelection == `rock` && playerSelection == `scissors`)? `You Lose! ${playerSelection} beats ${computerSelection}`:
+                (computerSelection == `scissors` && playerSelection == `paper`)? `You Lose! ${computerSelection} beats ${playerSelection}`:
                  `Its a tie! ${playerSelection} ties with ${computerSelection}`;
             return message;
         }
@@ -37,30 +46,31 @@
             let playerScore = 0;
             let computerScore = 0;
             for(let i = 1; i< 6; i++){
-                playerSelection = prompt(`Please indicate either rock, paper, or scissors`).toLowerCase();
+                playerSelectio = prompt(`Please indicate either rock, paper, or scissors`);
+                playerSelection = playerSelectio.toLowerCase();
                 computerSelection = computerPlay().toLowerCase();
                 //Player Wins Round i
-                if(playGame(playerSelection,computerSelection).includes("Win")){
+                if(playGame(playerSelection,computerSelection).includes("You Win")){
                     playerScore++;
-                    console.log(`You Win Round ${i} since ${playerScore} beats ${computerSelection}`);
+                    alert(`You Win Round ${i} since ${playerSelection} beats ${computerSelection}`);
                 }
                 //computer wins round i
-                else if (playGame(playerSelection,computerSelection).includes("Lose")){
+                else if (playGame(playerSelection,computerSelection).includes("You Lose")){
                     computerScore++;
-                    console.log(`You lose Round ${i} since ${playerScore} loses to ${computerSelection}`);
+                    alert(`You lose Round ${i} since ${playerSelection} loses to ${computerSelection}`);
                 }
                 //tie
                 else{
-                    console.log(`You Tie Round ${i} since ${playerScore} ties with ${computerSelection}`);
+                    alert(`You Tie Round ${i} since ${playerSelection} ties with ${computerSelection}`);
                 }
             }
             //end game message
             let message = (playerScore > computerScore)? `You win with a score of ${playerScore} compared the the computer's score of ${computerScore}`:
                 (playerScore < computerScore)? `You lose with a score of ${playerScore} compared the the computer's score of ${computerScore}`:
-                `It's a tie. Both scored ${playerScore}`;
-            console.log(message);
+                `It's a tie. Both you and the computer had a score of ${playerScore}`;
+            alert(message);
         }
-        console.log(game());
+        game();
     </script>
 </body>
 </html>

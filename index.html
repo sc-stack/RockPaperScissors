@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
     <style>
-        h1{
-            position: fixed;
-            left: 200px;
-        }
     </style>
 <head>
     <meta charset="UTF-8">
@@ -12,65 +8,65 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>ROCK PAPER SCISSORS</h1>
+    <button id = "rock">Rock</button>
+    <button id = "paper">Paper</button>
+    <button id = "scissors">Scissors</button>
+    <div id = "container">Results</div>
     <script>
         //generates an arbitrary number from 1-3 that will help the computer 
         //returns either Rock Paper or Scissors , respectively correlated to the numbers 0, 1, 2
+        let playerScore = 0;
+        let cpuScore = 0;
         function computerPlay(){
             let rand = Math.floor(Math.random() * 3);
             switch(rand){
                 case 0: 
-                    return 'Rock';
+                    return 'rock';
                     break;
                 case 1: 
-                    return 'Paper'
+                    return 'paper'
                     break;
                 case 2: 
-                    return 'Scissors'
+                    return 'scissors'
                     break;
             }
             return;
         }
         //plays a single round of rock, paper, scissors
         function playGame(playerSelection, computerSelection){
+            //add scores tomorrow
             let message =  (playerSelection == `rock` && computerSelection == `scissors`)? `You Win! ${playerSelection} beats ${computerSelection}`:
                 (playerSelection == `rock` && computerSelection == `paper`)? `You Lose! ${computerSelection} beats ${playerSelection}`:
                 (playerSelection == `scissors` && computerSelection == `paper`)? `You Win! ${playerSelection} beats ${computerSelection}`:
                 (computerSelection == `rock` && playerSelection == `scissors`)? `You Lose! ${playerSelection} beats ${computerSelection}`:
                 (computerSelection == `scissors` && playerSelection == `paper`)? `You Lose! ${computerSelection} beats ${playerSelection}`:
                  `Its a tie! ${playerSelection} ties with ${computerSelection}`;
-            return message;
+            return message
         }
         //plays the game for 5 rounds and keeps track of the score
-        function game(){
-            let playerScore = 0;
-            let computerScore = 0;
-            for(let i = 1; i< 6; i++){
-                playerSelectio = prompt(`Please indicate either rock, paper, or scissors`);
-                playerSelection = playerSelectio.toLowerCase();
-                computerSelection = computerPlay().toLowerCase();
-                //Player Wins Round i
-                if(playGame(playerSelection,computerSelection).includes("You Win")){
-                    playerScore++;
-                    alert(`You Win Round ${i} since ${playerSelection} beats ${computerSelection}`);
-                }
-                //computer wins round i
-                else if (playGame(playerSelection,computerSelection).includes("You Lose")){
-                    computerScore++;
-                    alert(`You lose Round ${i} since ${playerSelection} loses to ${computerSelection}`);
-                }
-                //tie
-                else{
-                    alert(`You Tie Round ${i} since ${playerSelection} ties with ${computerSelection}`);
-                }
-            }
-            //end game message
-            let message = (playerScore > computerScore)? `You win with a score of ${playerScore} compared the the computer's score of ${computerScore}`:
-                (playerScore < computerScore)? `You lose with a score of ${playerScore} compared the the computer's score of ${computerScore}`:
-                `It's a tie. Both you and the computer had a score of ${playerScore}`;
-            alert(message);
-        }
-        game();
+        const rock = document.querySelector(`#rock`);
+        const paper = document.querySelector(`#paper`);
+        const scissors = document.querySelector(`#scissors`);
+        const div = document.createElement('div');
+        const container = document.querySelector('#container');
+        rock.addEventListener('click', ()=>{
+            div.setAttribute('style', 'color: blue');
+            div.textContent = playGame('rock', computerPlay());
+            container.appendChild(div);
+        });
+        paper.addEventListener('click', () => {
+            div.setAttribute('style', 'color: blue');
+            div.textContent = playGame('paper', computerPlay());
+            container.appendChild(div);
+        });
+        scissors.addEventListener('click', () =>{
+            div.setAttribute('style', 'color: blue');
+            div.textContent = playGame('scissors', computerPlay());
+            container.appendChild(div);
+        });
+     //   rock.addEventListener('click', playGame(`rock`, computerPlay()));
+     //   paper.addEventListener('click', playGame(`paper`, computerPlay()));
+      //  scissors.addEventListener('click', playGame(`scissors`, computerPlay()));
     </script>
 </body>
 </html>

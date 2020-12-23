@@ -107,7 +107,22 @@
         const pScore = document.createElement('div');
         const cScore = document.createElement('div');
         const scoreBoard = document.querySelector(`#score`);
+        const endRes = document.createElement('div');
+        function checkEnd(){ 
+        if(playerScore == 5){
+            playerScore = 0;
+            cpuScore = 0;
+            endRes.textContent = "You are the winner";
+            container.appendChild(endRes);
+        }else if(cpuScore == 5){
+            playerScore = 0;
+            cpuScore = 0;
+            endRes.textContent = "You Lose";
+            container.appendChild(endRes);
+        }
+    }
         rock.addEventListener('click', ()=>{
+            endRes.textContent = "";
             div.setAttribute('style', 'color: blue');
             div.textContent = playGame('rock', computerPlay());
             pScore.textContent = "" + playerScore;
@@ -117,8 +132,10 @@
             cScore.setAttribute('style', 'position: fixed; right: 600px');
             scoreBoard.appendChild(cScore);
             container.appendChild(div);
+            checkEnd();
         });
         paper.addEventListener('click', () => {
+            endRes.textContent = "";
             div.setAttribute('style', 'color: blue');
             div.textContent = playGame('paper', computerPlay());
             pScore.textContent = "" + playerScore;
@@ -128,8 +145,10 @@
             cScore.setAttribute('style', 'position: fixed; right: 600px');
             scoreBoard.appendChild(cScore);
             container.appendChild(div);
+            checkEnd();
         });
         scissors.addEventListener('click', () =>{
+            endRes.textContent = "";
             div.setAttribute('style', 'color: blue');
             div.textContent = playGame('scissors', computerPlay());
             pScore.textContent = "" + playerScore;
@@ -139,6 +158,7 @@
             cScore.setAttribute('style', 'position: fixed; right: 600px');
             scoreBoard.appendChild(cScore);
             container.appendChild(div);
+            checkEnd();
         });
      //   rock.addEventListener('click', playGame(`rock`, computerPlay()));
      //   paper.addEventListener('click', playGame(`paper`, computerPlay()));
